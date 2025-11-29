@@ -28,6 +28,20 @@ app.get("/clients/:id", async (req, res) => {
   }
 });
 
+app.put("/clients/:id", async (req, res) => {
+  try {
+    const clientid = req.params.id;
+    const status = req.body.statut;
+    const result = await pool.query(
+      "UPDATE clients SET statut = $1 WHERE id = $2 RETURNING *",
+      [status, clientid]
+    );
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Le serveur run sur le port: ${process.env.PORT || 5000}`);
 });

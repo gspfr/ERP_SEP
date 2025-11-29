@@ -7,4 +7,9 @@
 
 <script setup></script>
 
-<style scoped></style>
+<style scoped>
+.footer-container {
+  text-align: center;
+  padding: 20px;
+}
+</style>

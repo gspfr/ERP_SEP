@@ -2,6 +2,7 @@
   <div class="header-container">
     <h1 class="header-title">LA SEPEFREI</h1>
     <ul>
+      <li><router-link to="/clients">Clients</router-link></li>
       <li><router-link to="/login">Se connecter</router-link></li>
       <li><router-link to="/register">S'inscrire</router-link></li>
     </ul>
@@ -14,6 +15,7 @@
 .header-container {
   display: flex;
   justify-content: space-between;
+  margin: 0 20px;
 }
 
 .header-container ul {

@@ -1,0 +1,18 @@
+:root {
+  --primary-green: #1b5327;
+  --secondary-green: #246e34;
+  --tertiary-green: #91b799;
+  --quaternary-green: #d9ead3;
+  --primary-pink: #a74d6c;
+  --secondary-pink: #df6790;
+  --tertiary-pink: #efb3c7;
+  --quaternary-pink: #f9e1e9;
+  --primary-yellow: #b3801c;
+  --secondary-yellow: #efaa25;
+  --tertiary-yellow: #f7d592;
+  --quaternary-yellow: #fceed3;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
