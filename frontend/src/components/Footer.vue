@@ -11,5 +11,7 @@
 .footer-container {
   text-align: center;
   padding: 20px;
+  background-color: var(--secondary-green);
+  color: white;
 }
 </style>

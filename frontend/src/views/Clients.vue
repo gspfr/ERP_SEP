@@ -12,7 +12,11 @@ import DashboardCliensts from "../components/DashboardCliensts.vue";
 import FilterClients from "../components/FilterClients.vue";
 
 const clients = ref([]);
-const filters = ref({});
+const filters = ref({
+  search: "",
+  status: "",
+  order: "asc",
+});
 
 const filteredClients = computed(() => {
   let result = clients.value;

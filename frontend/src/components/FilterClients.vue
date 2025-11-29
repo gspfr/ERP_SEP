@@ -15,7 +15,6 @@
       </select>
 
       <select v-model="alphabeticalOrder">
-        <option value="asc">Ordre alphabétique</option>
         <option value="asc">A-Z</option>
         <option value="desc">Z-A</option>
       </select>
