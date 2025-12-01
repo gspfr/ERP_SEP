@@ -13,7 +13,15 @@
       </thead>
       <tbody>
         <tr v-for="client in clients" :key="client.id">
-          <td>{{ client.nom }}</td>
+          <td class="name-cell">
+            <img
+              class="edit-icon"
+              src="../assets/edit.png"
+              alt="edit icon"
+              @click="openEditForm(client)"
+            />
+            {{ client.nom }}
+          </td>
           <td>{{ client.prenom }}</td>
           <td>{{ client.email }}</td>
           <td>{{ client.telephone }}</td>
@@ -39,10 +47,18 @@
       </tbody>
     </table>
   </div>
+  <ClientForm
+    v-if="clientFormVisible"
+    :client="selectedClient"
+    @close="clientFormVisible = false"
+    @updated="onClientUpdated"
+    @deleted="onClientDeleted"
+  />
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
+import ClientForm from "./ClientForm.vue";
 
 defineProps({
   clients: {
@@ -51,12 +67,31 @@ defineProps({
   },
 });
 
+const emit = defineEmits(["clientUpdated", "clientDeleted"]);
+
 const editingId = ref(null);
 const editedStatus = ref("");
+const clientFormVisible = ref(false);
+const selectedClient = ref(null);
+
+const openEditForm = (client) => {
+  selectedClient.value = client;
+  clientFormVisible.value = true;
+};
 
 const editStatus = (client) => {
   editingId.value = client.id;
   editedStatus.value = client.statut;
+};
+
+const onClientUpdated = (updatedClient) => {
+  emit("clientUpdated", updatedClient);
+  clientFormVisible.value = false;
+};
+
+const onClientDeleted = (deletedClient) => {
+  emit("clientDeleted", deletedClient);
+  clientFormVisible.value = false;
 };
 
 const updateStatus = (client) => {
@@ -126,5 +161,22 @@ const cancelEdit = () => {
 .dashboard-table select {
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.name-cell {
+  position: relative;
+  text-align: center;
+}
+
+.name-cell:hover .edit-icon {
+  opacity: 1;
+}
+
+.edit-icon {
+  opacity: 0;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 10px;
 }
 </style>

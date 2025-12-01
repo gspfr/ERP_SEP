@@ -1,8 +1,16 @@
 <template>
   <div class="clients-container">
     <h2>Dashboard des clients</h2>
-    <FilterClients :clients="clients" @update:filters="filters = $event" />
-    <DashboardCliensts :clients="filteredClients" />
+    <FilterClients
+      :clients="clients"
+      @update:filters="filters = $event"
+      @clientAdded="clients.push($event)"
+    />
+    <DashboardCliensts
+      :clients="filteredClients"
+      @clientUpdated="updateClientInList"
+      @clientDeleted="removeClientFromList"
+    />
   </div>
 </template>
 
@@ -17,6 +25,17 @@ const filters = ref({
   status: "",
   order: "asc",
 });
+
+const updateClientInList = (updatedClient) => {
+  const index = clients.value.findIndex((c) => c.id === updatedClient.id);
+  if (index !== -1) {
+    clients.value[index] = updatedClient;
+  }
+};
+
+const removeClientFromList = (deletedClientId) => {
+  clients.value = clients.value.filter((c) => c.id !== deletedClientId);
+};
 
 const filteredClients = computed(() => {
   let result = clients.value;
@@ -63,6 +82,6 @@ onMounted(() => {
 
 <style scoped>
 .clients-container {
-  padding: 20px;
+  padding: 20px 60px;
 }
 </style>

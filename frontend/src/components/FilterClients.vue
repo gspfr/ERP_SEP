@@ -19,6 +19,7 @@
         <option value="desc">Z-A</option>
       </select>
     </div>
+    <AddClient @clientAdded="onClientAdded" />
     <GraphClients :clients="clients" />
   </div>
 </template>
@@ -26,6 +27,7 @@
 <script setup>
 import { ref, watch, defineProps } from "vue";
 import GraphClients from "./GraphClients.vue";
+import AddClient from "./AddClient.vue";
 
 const props = defineProps({
   clients: {
@@ -34,11 +36,15 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:filters"]);
+const emit = defineEmits(["update:filters", "clientAdded"]);
 
 const search = ref("");
 const selectedStatus = ref("");
 const alphabeticalOrder = ref("asc");
+
+const onClientAdded = (newClient) => {
+  emit("clientAdded", newClient);
+};
 
 watch([search, selectedStatus, alphabeticalOrder], () => {
   emit("update:filters", {
