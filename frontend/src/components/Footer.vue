@@ -13,5 +13,6 @@
   padding: 20px;
   background-color: var(--secondary-green);
   color: white;
+  width: 100%;
 }
 </style>

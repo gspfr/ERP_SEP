@@ -2,14 +2,34 @@
   <div class="header-container">
     <h1 class="header-title"><router-link to="/">LA SEPEFREI</router-link></h1>
     <ul>
-      <li><router-link to="/clients">Clients</router-link></li>
-      <li><router-link to="/login">Se connecter</router-link></li>
-      <li><router-link to="/register">S'inscrire</router-link></li>
+      <li v-if="isAuthenticated">
+        <router-link to="/clients">Clients</router-link>
+      </li>
+      <li v-if="!isAuthenticated">
+        <router-link to="/login">Se connecter</router-link>
+      </li>
+      <li v-if="!isAuthenticated">
+        <router-link to="/register">S'inscrire</router-link>
+      </li>
     </ul>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+
+const isAuthenticated = ref(false);
+
+const logout = () => {
+  localStorage.removeItem("authToken");
+  isAuthenticated.value = false;
+  router.push("/login");
+};
+
+onMounted(() => {
+  isAuthenticated.value = !!localStorage.getItem("authToken");
+});
+</script>
 
 <style scoped>
 .header-container {
