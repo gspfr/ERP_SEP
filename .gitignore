@@ -1,5 +1,6 @@
 # Files
 MES N°2 _ Technique.pdf
+.env.docker
 
 # Frontend
 /frontend/node_modules
