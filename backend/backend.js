@@ -117,3 +117,5 @@ app.post("/register", async (req, res) => {
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Le serveur run sur le port: ${process.env.PORT || 5000}`);
 });
+
+module.exports = app; // Export pour les tests
