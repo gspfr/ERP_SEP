@@ -16,9 +16,13 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { isAuthenticated } from "../auth";
 
 const email = ref("");
 const password = ref("");
+
+const router = useRouter();
 
 const login = async () => {
   try {
@@ -36,6 +40,7 @@ const login = async () => {
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem("authToken", data.token);
+      isAuthenticated.value = true;
       alert("Connexion réussie !");
       email.value = "";
       password.value = "";

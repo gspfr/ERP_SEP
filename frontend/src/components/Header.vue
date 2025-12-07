@@ -11,14 +11,19 @@
       <li v-if="!isAuthenticated">
         <router-link to="/register">S'inscrire</router-link>
       </li>
+      <li v-if="isAuthenticated">
+        <bouton @click="logout" class="logout-button">Se déconnecter</bouton>
+      </li>
     </ul>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { isAuthenticated } from "../auth";
 
-const isAuthenticated = ref(false);
+const router = useRouter();
 
 const logout = () => {
   localStorage.removeItem("authToken");
@@ -56,5 +61,14 @@ onMounted(() => {
 .header-title a {
   color: var(--primary-green);
   text-decoration: none;
+}
+
+.logout-button {
+  background-color: var(--secondary-pink);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 </style>

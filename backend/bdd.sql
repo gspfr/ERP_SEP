@@ -1,7 +1,3 @@
-CREATE DATABASE erp_sep;
-
-\connect erp_sep;
-
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS clients;
 
