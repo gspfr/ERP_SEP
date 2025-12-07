@@ -95,7 +95,7 @@ Il y a trois scripts de lancement:
 
 - "start": pour lancer le serveur en production (utilisé par docker)
 - "dev": pour lancer le serveur en développement avec nodemon et ne pas avoir à le relancer à chaque modification
-- "test": pour lancer les tests
+- "test": pour lancer les tests (npm run test)
 
 Pour la contenérisation j'ai utilisé un Dockerfile dans le dossier /backend qui installe node, copie les fichiers, installe les dépandances et lance le serveur.
 
