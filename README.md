@@ -53,7 +53,9 @@ cd ERP_SEP
 
 3. Créer le fichier .env.docker avec les variables d'environnements nécessaires (voir exemples fournis) dans le fichier .env.docker-example
 
-4. Lancer les conteneurs docker
+4. Créer le fichier /backend/.env pour préciser le port du backend sur 3000 (voir example fourni dans le fichier /backend/.env.example)
+
+5. Lancer les conteneurs docker
 
 ```bash
 docker-compose up --build
@@ -62,30 +64,9 @@ docker-compose up --build
 4. Accéder à l'application via le navigateur
 
 ```bash
-http://localhost:3000
+http://localhost:8080
 ```
 
 ## Justifications des choixs techniques
 
 ## Propositions d'améliorations ou d'industrialisations
-
-### Création de la base de données
-
-```bash
-psql -U {username}
-\i 'C:/{chemin_vers_le_fichier_sql}'
-```
-
-### Lancement du backend
-
-```bash
-cd backend
-npm run dev
-```
-
-### Lancement du frontend
-
-```bash
-cd frontend
-npm run dev
-```
